@@ -1,0 +1,41 @@
+{% extends "Adspages/base.html" %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+<div class="row">
+    {% for i in ads %}
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 my-3 box-element">
+            <div class="card">
+                <img src="{{i.image.url}}" alt="" height="250" class="card-img-top">
+                <div class="card-body">
+                    {% if i.center_or_teacher_name or i.teaching_subject %}
+                        <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                        <span class="card-title">{{i.teaching_subject}}</span>
+                    {% elif i.work_type %}
+                        <span id="markaz" class="border-bottom border-primar    y">{{i.category}}</span><br>
+                        <span class="card-title">{{i.work_type}}</span>
+                    {% else %}
+                        <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                        <span class="card-title">{{i.name}}</span>
+                    {% endif %}
+                    <p class="card-text mb-2">Narxi: {{i.narx}}</p>
+                    <span class="text-secondary"> <small> E'lon qilingan kun: {{ i.add_date }}</small> </span><br>
+                    <div class="d-grid gap-2 mt-1">
+                        <a href="{% url 'Ads:Full' pk=i.pk %}" class="btn btn-sm btn-primary rounded-0">Nazar solish</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center">
+            <hr>
+            <p class="py-4">
+                Afsus Hali Bizda unday elon Mavjud emas!
+            </p>
+            <hr>
+        </div>
+    {% endfor %}
+</div> <!-- cartitems -->
+{% endblock content %}

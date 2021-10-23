@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    USERPROFILE
+{% endblock title %}
+{% block content %}
+  
+    <div class="row" style="margin-top: 70px;">
+        <div class="col-11 col-sm-11 col-md-10 col-lg-8 col-xl-8 m-auto">
+            <div class="box-element p-3">
+                <div class="card mb-3" >
+                <div class="row">
+                    <div class="col-6 m-auto mt-4 col-sm-4 m-sm-auto ms-sm-0 col-md-4 col-lg-4 col-lg-4 mt-2">
+                        <a href="{{ user.userprofile.image.url }}">
+                            <img src="{{ user.userprofile.image.url }}" alt="UserImg" class="img-fluid img-thumbnail rounded-circle ms-sm-3">
+                        </a>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-lg-8">
+                    <div class="card-body">
+                        <table class="table mt-4 table-hover table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                            {% if user.first_name %}
+                                <tr>
+                                    <td>Ism </td>
+                                    <td>{{ user.first_name }}</td>
+                                </tr>                          
+                            {% endif %}
+                            {% if user.last_name %}
+                                <tr>
+                                    <td> Familya </td>
+                                    <td>{{ user.last_name }}</td>
+                                </tr>                          
+                            {% endif %}
+                            <tr>
+                                <td>USERNAME</td>
+                                <td>{{ user.username | upper }}</td>
+                            </tr>
+                            <tr>
+                                <td>EMAIL</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><a href="{% url 'Users:Update' %}" class="btn btn-primary btn-sm px-4"><i class="fas fa-sliders-h"></i> Settings</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

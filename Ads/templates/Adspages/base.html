@@ -1,0 +1,205 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- fontawesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body class="bg-white">
+    {% include "pages/messages.html" %}
+    <style>
+        #fon-img{
+            color: white;   
+            text-shadow: red;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            width: 100%;
+            height: 80vh;
+            background-image: url("{% static 'images/laptopt.jpg' %}");
+            background-position: center;
+            background-clip: border-box;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 320px) and (max-width: 481px) {
+            #fon-img{
+                width: 100%;
+                height: 80vh;
+                background-image: url("{% static 'images/mobile2.jpg' %}");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 767px) {
+            #fon-img{
+                width: 100%;
+                height: 80vh;
+                background-image: url("{% static 'images/ipad2.jpg' %}");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        @media (min-width: 1024px) {
+            #fon-img{
+                width: 100%;
+                height: 80vh;
+                background-image: url("{% static 'images/laptopt.jpg' %}");
+                background-position: center;
+                background-clip: border-box;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        #title{
+            left: 7%;
+            top: 17%;
+            position: relative;
+        }
+    </style>
+    <div class="row" style="margin-right: 0;">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 m-auto">
+            <div class="container-fluid">    
+                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Eleventh navbar example">
+                    <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Ansav.Uz</a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            
+                    <div class="navbar-collapse collapse" id="navbarsExample09">
+                        <form class="d-flex mt-3 mt-lg-0 me-0 me-sm-0 me-md-auto me-lg-auto w-100" method="get" action="{% url 'Ads:Search' %}">
+                            <input name="search" class="form-control me-auto rounded-pill form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                        <div class="text-center text-sm-center text-md-center ms-auto ms-lg-5 mt-lg-0 mt-2 d-inline-block">
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'Users:Profile' %}">
+                                    <img src="{{user.userprofile.image.url}}" width="35" alt="userimg">
+                                </a>
+                            {% else %}  
+                                <div class="btn-group text-center text-sm-center text-md-center">
+                                    <a href="{% url 'Users:LogIn' %}" class="btn btn-outline-success btn-sm">LogIn</a>
+                                    <a href="{% url 'Users:SignUp' %}" class="btn btn-outline-warning btn-sm">SignUp</a>
+                                </div>  
+                            {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                </nav> <!--navbar-->
+                
+                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Twelfth navbar example">
+                    <div class="container-fluid">
+                    <div class="m-auto">
+                        <ul class="nav" id="nav_ul">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/">Bosh sahifa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'Ads:About' %}">Biz Haqimizda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'Ads:Contact' %}">Contact</a>
+                            </li>
+                        </ul>
+                    </div><br>
+                </div>
+            </nav> 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Twelfth navbar example">
+                <div class="m-auto">
+                    <ul class="nav text-center">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">All</a>
+                        </li>
+                        {% for i in category %}                              
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'Ads:Filter' pk=i.pk %}">{{i.name}}</a>
+                            </li>
+                        {% endfor %} 
+                    </ul>
+                </div>
+            </nav>
+    
+                <div id="fon-img">
+                  <div class="p-5 rounded" id="title">
+                    <div class="col-sm-8 mx-auto">
+                      <h1>Ansav.Uz Online <br> Internet Bozor</h1>
+                      <p>Biz bilan yanada tezroq!</p>
+                      <p>
+                        {% if user.is_authenticated %}
+                          
+                        {% else %}       
+                          <p>Hoziroq royhatdan o'ting va soting!</p>
+                            <a class="btn btn-primary btn-sm" href="{% url 'Users:SignUp' %}" role="button">Ro'yhatdan O'tish »</a>
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </di>
+                </div>
+              
+                <div class="wrapper text-center py-4 bg-light">
+                    <h4 class="m-0">Eng Yangi E'lonlar</h4>
+                </div>    
+  <div class="main">
+      {% block content %}
+
+
+      {% endblock content %}
+  </div>
+  
+  <footer>
+    <div class="bg-light py-3 footer-bottom">
+        <div class="row px-4">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <ul class="list-unstyled">
+                    {% for i in category %}
+                        <li><a class="" href="{% url 'Ads:Filter' pk=i.pk %}">{{i.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <ul class="list-unstyled">
+                    <li><a href="/">Bosh sahifa</a></li>
+                    <li><a href="{% url 'Ads:About' %}">Biz Haqimizda</a></li>
+                    <li><a href="{% url 'Ads:Contact' %}">Contact</a></li>
+                    <li><a href="{% url 'Ads:Help' %}">Qanday qilib elon Beraman ?</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <div class="telegram">
+                    <span>Bizni Telegamda Kuzting!</span>
+                    <samp><a href="http://t.me@an_sav1">http://t.me@an_sav1</a></samp>
+                </div>
+                <div class="ilova d-grid gap-2 mt-3">
+                    <span>Mobil Ilovamizni ham yuklab oling!</span>
+                    <a href="#" class="btn btn-sm btn-outline-success">Yuklab Olish</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <span class="">Ansav.Uz &copy; 2021</span>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

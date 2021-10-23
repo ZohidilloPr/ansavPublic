@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    PersonalAds
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for i in object_list %}  
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-3 box-element">
+                <div class="card">
+                    <img src="{{i.image.url}}" alt="" height="200" class="card-img-top">
+                    <div class="card-body">
+                        {% if i.center_or_teacher_name or i.teaching_subject %}
+                            <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                            <span class="card-title">{{i.teaching_subject}}</span>
+                        {% elif i.work_type %}
+                            <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                            <span class="card-title">{{i.work_type}}</span>
+                        {% else %}
+                            <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                            <span class="card-title">{{i.name}}</span>
+                        {% endif %}
+                        <p class="card-text mb-2">Narxi: {{i.narx}} so'm</p>
+                        <span class="text-secondary"> <small> E'lon qilingan kun: {{ i.add_date }}</small> </span><br>
+                        <div class="d-grid gap-2 mt-1">
+                            <a href="{% url 'Ads:FullUser' pk=i.pk %}" class="btn btn-sm btn-secondary rounded-0">Nazar solish</a>
+                        </div>
+                        <div class="mt-3 d-grid gap-2" role="group">
+                            {% if i.center_or_teacher_name and not i.work_type %}
+                                <a href="{% url 'Ads:UpdateEdu' pk=i.pk %}" class="btn btn-outline-info px-3 btn-sm">Edit</a>
+                            {% elif i.work_type %}
+                                <a href="{% url 'Ads:UpdateWork' pk=i.pk %}" class="btn btn-outline-info px-3 btn-sm">Edit</a>
+                            {% elif i.campany_name %}
+                                <a href="{% url 'Ads:UpdateProduction' pk=i.pk %}" class="btn btn-outline-info px-3 btn-sm">Edit</a>
+                            {% elif i.ijara_turi %}
+                                <a href="{% url 'Ads:UpdateIjara' pk=i.pk %}" class="btn btn-outline-info px-3 btn-sm">Edit</a>
+                            {% else %}
+                                <a href="{% url 'Ads:Update' pk=i.pk %}" class="btn btn-outline-info px-3 btn-sm">Edit</a>
+                            {% endif %}
+                            <form action="{% url 'Ads:Delete' pk=i.pk %}" method="post" class="d-grid gap-2">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                            <!-- <a href="{% url 'Ads:AddImg' pk=i.pk %}" class="btn btn-outline-success">Add</a> -->
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        {% endfor %}
+    </div> <!-- cartitems -->
+</div>
+
+
+{% endblock content %}

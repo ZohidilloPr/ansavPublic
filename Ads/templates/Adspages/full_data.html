@@ -1,0 +1,133 @@
+{% extends "index.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    Full Data
+{% endblock title %}
+{% block content %}
+<div class="bg-light py-2">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {% if obj.teaching_subject %}
+                        {{obj.teaching_subject}}
+                    {% elif obj.work_type %}
+                        {{obj.work_type}}
+                    {% elif obj.campany_name %}
+                        {{obj.campany_name}}
+                    {% else %}                
+                        {{obj.name}}
+                    {% endif %}
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-11 col-sm-10 col-md-10 col-lg-10 col-xl-10 m-auto">
+                <div class="box-element p-5">
+                    <div class="section-header py-5">
+                        {% if obj.center_or_teacher_name %}
+                            <h2 class="text-center" id="item_name">{{obj.center_or_teacher_name}}</h2>
+                        {% elif obj.ijara_turi %}
+                            <h2 class="text-center" id="item_name">{{obj.ijara_turi}}</h2>
+                        {% elif obj.campany_name %}
+                            <h2 class="text-center" id="item_name">{{obj.campany_name}}</h2>
+                        {% elif obj.work_type %}
+                            <h2 class="text-center" id="item_name">{{obj.work_type}}</h2>
+                        {% else %}
+                            <h2 class="text-center" id="item_name">{{obj.name}} Sotiladi!</h2>
+                        {% endif %}
+                        <div class="border-bottom border-primary mx-5"></div>
+                    </div>
+                    <div class="section-body">
+                        <div class="section-img-top">
+                            <div class="row text-center">
+                                <div class="col-11 col-sm-11 col-md-10 col-lg-10 col-xl-10 m-auto">
+                                    <div class="">
+                                        <img src="{{obj.image.url}}" alt="image" class="img-fluid img-thumbnail ">
+                                    </div>
+                                </div>
+                            </div>
+                            {% comment %}
+                                <div class="row text-center mt-3">
+                                    {% for i in obj.allimages %}                                 
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                                        <img src="{{i.images.url}}" class="img-fluid img-thumbnail" alt="">
+                                    </div>
+                                    {% empty %}
+                                    <p>Qo'shimcha rasm yoq!</p>
+                                    <!-- <a href="{% url 'Ads:AddImg' pk=obj.pk %}">AddImages</a> -->
+                                    {% endfor %}
+                                </div>
+                            {% endcomment %}
+                            <hr>
+                        </div>
+                        <div class="about"> 
+                            <table class="table mt-3 table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                                <tbody>
+                                    <tr>
+                                        {% if obj.name %}
+                                            <th colspan="1">Name</th>
+                                            <td colspan="2" >{{obj.name}}</td>
+                                        {% elif obj.center_or_teacher_name %}
+                                            <th colspan="1">Markaz nomi</th>
+                                            <td colspan="2" >{{obj.center_or_teacher_name}}</td>                                                              
+                                        {% elif obj.work_type %}
+                                            <th colspan="1">Xizmat nomi</th>
+                                            <td colspan="2" >{{obj.work_type}}</td>                                                              
+                                        {% endif %}
+                                        
+                                    </tr>
+                                    {% if obj.teaching_subject %}
+                                        <tr>
+                                            <th colspan="1">Fan</th>
+                                            <td colspan="2" >{{ obj.teaching_subject }} </td>
+                                        </tr>                                      
+                                    {% endif %}
+                                    <tr>
+                                        <th colspan="1">Narx</th>
+                                        <td colspan="2" >{{obj.narx}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">Masul shaxs</th>
+                                        <td colspan="2" >{{obj.contact_person}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">Telefon raqam</th>
+                                        <td colspan="2" >(+998) {{obj.contact_number}} </td>
+                                    </tr>
+                                    {% if obj.contact_person1 %}                                      
+                                    <tr>
+                                        <th colspan="1">Masul shaxs</th>
+                                        <td colspan="2" >{{obj.contact_person1}}</td>
+                                        </tr>
+                                    {% endif %}
+                                    {% if obj.contact_number1 %}                                      
+                                        <tr>
+                                            <th colspan="1">Telefon raqam</th>
+                                            <td colspan="2" >(+998) {{obj.contact_number1}} </td>
+                                        </tr>
+                                    {% endif %}
+                                        <tr>
+                                            <th colspan="1">Hudud</th>
+                                            <td colspan="2" >{{obj.region}} </td>
+                                        </tr>
+                                    {% if obj.about %}                                      
+                                        <tr>
+                                            <th colspan="1">About</th>
+                                            <td colspan="2">{{ obj.about }}</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

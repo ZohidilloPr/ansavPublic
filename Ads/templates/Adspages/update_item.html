@@ -1,0 +1,92 @@
+{% extends "index.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    Update
+{% endblock title %}
+{% block content %}
+<div class="bg-light py-2">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'Users:Profile' %}">PROFILE</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Taxrirlash</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-8 m-auto">
+                <div class="box-element p-5">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-floating my-3">
+                            {{form.name}}
+                            <label for="name">Buyumni nomini kiriting!</label>
+                        </div>
+                        <div class="form-floating my-3">
+                            {{form.narx}}
+                            <label for="narx">Narxni kiriting</label>
+                        </div>
+                        <div class="form-floating my-3">
+                            {{form.category}}
+                            <label for="group">Categoryni tanlang</label>
+                        </div>
+                        <small>Sotmoqchi bo'lgan buyumni ransmini kiriting</small><br>
+                        <div class="input-group input-group-sm">
+                            {{form.image}}
+                        </div>
+                        <div class="form-floating my-3">
+                            {{form.region}}
+                            <label for="region">Maznilingizni kiriting</label>
+                        </div>
+                        <span class="border-bottom ">Masul shaxs</span>
+                        <div class="form-floating my-3">
+                            {{form.contact_person}}
+                            <label for="group">Ismini kiriting</label>
+                        </div>
+                        <div class="form-floating my-3">
+                            {{form.contact_number}}
+                            <label for="group">Telefon raqamini kiriting</label>
+                        </div>
+                        <div class="accordion accordion-flush" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" type="button" class="accordion-button collapsed">
+                                        Advansed
+                                    </button>
+                                </h2>
+                                <div class="accordion-collapse collapse fade" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <span>Qo'shimcha Telefon raqam va odam</span><br>
+                                        <div class="form-floating my-3">
+                                            {{form.contact_person1}}
+                                            <label for="group">Ismini kiriting</label>
+                                        </div>
+                                        <div class="form-floating my-3">
+                                            {{form.contact_number1}}
+                                            <label for="group">Telefon raqamini kiriting</label>
+                                        </div>
+                                        <span>Bular majburiy emas***</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--accordion end-->
+<hr>
+                        <div class="form-floating">
+                            {{form.about}}
+                            <label for="area" class="">Maxsulot xaqida</label>
+                        </div>
+                        <div class="d-grid gap-2 my-4">
+                            <input type="submit" value="Add Cart" class="btn btn-sm btn-outline-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock content %}

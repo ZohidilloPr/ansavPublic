@@ -1,0 +1,64 @@
+{% extends "Adspages/base.html" %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+<div class="row">
+    {% for i in object_list %}
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-3 my-3 box-element">
+            <div class="card">
+                <img src="{{i.image.url}}" alt="" height="200" class="card-img-top">
+                <div class="card-body">
+                    {% if i.center_or_teacher_name or i.teaching_subject %}
+                        <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                        <span class="card-title">{{i.teaching_subject}}</span>
+                    {% elif i.work_type %}
+                        <span id="markaz" class="border-bottom border-primar    y">{{i.category}}</span><br>
+                        <span class="card-title">{{i.work_type}}</span>
+                    {% else %}
+                        <span id="markaz" class="border-bottom border-primary">{{i.category}}</span><br>
+                        <span class="card-title">{{i.name}}</span>
+                    {% endif %}
+                    <p class="card-text mb-2">Narxi: {{i.narx}}</p>
+                    <span class="text-secondary"> <small> E'lon qilingan kun: {{ i.add_date }}</small> </span><br>
+                    <div class="d-grid gap-2 mt-1">
+                        <a href="{% url 'Ads:Full' pk=i.pk %}" class="btn btn-sm btn-primary rounded-0">Nazar solish</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div> <!-- cartitems -->
+{% if is_paginated %}
+    <nav aria-label="Page navigation example" id="pagination">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page=1">First</a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+        {% endif %}
+      </ul>
+    </nav>
+{% endif %}
+{% endblock content %}

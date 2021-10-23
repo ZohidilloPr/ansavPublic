@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load bootstrap5 %}
+{% block title %}
+Settings
+{% endblock title %}
+
+{% block content %}
+<div class="bg-light py-2">
+  <div class="container">
+      <nav aria-label="breadcrumb" class="">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'Users:Profile' %}">PROFILE</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Settings</li>
+          </ol>
+      </nav>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="box-element p-3">
+        <div class="card mb-3" >
+          <div class="row g-0">
+            <div class="col-md-4">
+                <a href="{{ user.userprofile.image.url }}">
+                    <img src="{{ user.userprofile.image.url }}" alt="UserImg" class="img-fluid rounded-circle p-3">
+                </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <table class="table mt-4 table-hover">
+                    <tr>
+                        <td><i class="fas fa-user-tie"></i> USERNAME</td>
+                        <td>{{ user.username | upper }}</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-at"></i> EMAIL</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <form class="" action="{% url 'Users:Update' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form pform %}
+            {% bootstrap_form uform %}
+            <div class="d-grid gap-2">
+                {% bootstrap_button 'Update' button_type='submit' button_class='btn-outline-primary' size='sm' %}
+            </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    LogIn
+{% endblock title %}
+
+{% block content %}
+<div class="bg-light py-2">
+  <div class="container">
+      <nav aria-label="breadcrumb" class="">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">LogIn</li>
+          </ol>
+      </nav>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-11 col-sm-10 col-md-4 col-lg-4 col-xl-4 m-auto">
+    <div class="box-element p-3 bg-light">
+        <div class="title text-center">
+            <span class="fs-3 font-monospace">LogIn</span>
+            <hr class="text-primary">
+        </div>
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form login_form %}
+        <div class="d-grid gap-2">
+          {% bootstrap_button 'SugnIn' button_type='submit' button_class='btn-outline-primary' size='sm' %}
+        </div>
+        <div class="text-center">
+            <small>Ro'yhatdan o'tganmisiz ? &raquo; <code><a href="{% url 'Users:SignUp' %}">Yangi Account</a></code></small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

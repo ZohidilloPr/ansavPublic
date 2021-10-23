@@ -1,0 +1,23 @@
+#nav_ul .nav-item .nav-link {
+    color: black;
+    font-family: serif;
+}
+.navbar-brand #item_name{
+    font-variant: small-caps;
+    font-family: serif;
+}
+.box-element{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  }
+
+.button{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+#pagination{
+    position: -webkit-sticky; /*  safari uchun */
+    position: sticky;
+    bottom: 1%;
+    left: 50%;
+}

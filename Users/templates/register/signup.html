@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block title %}
+    SignUp
+{% endblock title %}
+
+{% block content %}
+<div class="bg-light py-2">
+  <div class="container">
+      <nav aria-label="breadcrumb" class="">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">SignUp</li>
+          </ol>
+      </nav>
+  </div>
+</div>
+<div class="bg-light1 rounded"> 
+    <div class="row mt-5" style="margin-right: 0;">
+      <div class="col-11 col-sm-10 col-md-8 col-lg-7 col-xl-6 m-auto">
+        <div class="box-element p-5">
+            <div class="title text-center">
+                <span class="fs-3 font-monospace">SignUp</span>
+                <hr class="text-primary">
+            </div>
+            <form class="" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group my-3">
+                    {{form.username}}
+                    <small class="text-secondary">username 150ta belgidan oshmasligi kerak. harflar raqamlar va boshqa belgilardan @/./+/-/_ foydalanish mumkun</small>
+                </div>
+                <div class="input-group my-3">
+                    {{form.email}}
+                </div>
+                <div class="input-group mt-3">
+                    {{form.password1}} <br> <br>
+                </div>
+                <ul class="list-unstyled ms-5">
+                    <li><small class="text-secondary">password boshqa malumotlaringizga oxshamasligi kerak.</small></li>
+                    <li><small class="text-secondary">password kamida 8 ta belgidan iborat bo'lishi kerak kerak.</small></li>
+                    <li><small class="text-secondary">password ko'p uchraydigan parol bo'lmasligi kerak.</small></li>
+                    <li><small class="text-secondary">password faqat raqamlardan iborat bo'lmasligi kerak.</small></li>
+                </ul>
+                <div class="input-group mt-3">
+                    {{form.password2}}
+                </div>
+                <small class="text-secondary ms-5">tepada yozgan password bilan bir hil bo'lishligi kerak.</small>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                <div class="d-grid gap-2">
+                {% bootstrap_button 'Register' button_type='submit' button_class='btn-outline-primary' size='sm' %}
+                </div>
+                <div class="text-center">
+                    <small>Siz ro'yhatdan o'tganmisiz ? &raquo; <code><a href="{% url 'Users:LogIn' %}">SignIn</a></code></small>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}

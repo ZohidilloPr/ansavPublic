@@ -1,0 +1,50 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- fontawesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-3">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item">About</li>
+        </ol>
+    </nav>
+    <div class="container mt-5">
+        <div class="header">
+            <div class="text-center">
+                <h3 class="border-bottom pb-2 border-secondary">Biz Haqimizda! Ansav.Uz</h3>
+            </div>
+        </div>
+        <section class="p-2 text-center">
+            <p class="fs-5">
+                Assalomu aleykum aziz yurtdoshlar! Bu saytimizni siz do'stlarimizning reklama va e'lonlari uchun ishga tushirdik. Bu saytda siz barcha turdagi maxsulotlar(uy-joy, mashina, elektro-texnika, turli xildagi ish xizmatlari, kiyim kechak qisqa qilib aytganda barcha turdagi e'lonlarni) joylashtirishingiz mumkin. Bu saytimizdagi har bir e'lonlar <b>Telegram kanalimizda ham qo'yilib boriladi!</b>  
+            </p>
+            <h3 class="my-5 border-bottom">Marhamat biz bilan soting va sotib oling!</h3>
+            <p class="fixed-bottom">Ansav.uz &copy;2021</p>
+        </section>
+    </div>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
