@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ansavdb',
-        'USER': 'admin',
+        'USER': 'postgres',
         'PASSWORD': 'adminansav2021',
         'HOST': 'localhost',
         'PORT': '',
