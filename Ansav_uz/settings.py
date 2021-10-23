@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-cz8my_wd=r*y!v!*6!n_nncc%8xmq70r23!qs+y+j4y=y)=x@$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['EC2.DNS.Ansav.uz', '127.0.0.1']
+ALLOWED_HOSTS = ['EC2.DNS.Ansav.uz', '127.0.0.1', 'localhost']
 
 
 # Application definition
